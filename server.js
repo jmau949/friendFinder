@@ -1,6 +1,6 @@
 let express = require('express');   
 let app = express();
-let PORT = process.env.PORT || 8000
+let PORT = process.env.PORT || 8080
 let html = require('./app/routes/htmlRoutes')
 let api = require('./app/routes/apiRoutes');
 let path = require('path')
