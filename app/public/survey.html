@@ -8,7 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="cover.css">
+    <link rel="stylesheet" href="/cover.css">
 </head>
 
 <body>
@@ -171,7 +171,7 @@
 
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -180,38 +180,49 @@
         crossorigin="anonymous"></script>
 
     <script>
+
         $("#submit").on("click", function (event) {
             event.preventDefault();
 
-            // Here we grab the form elements
-            var newFriend = {
-                name: $('#name').val().trim(),
-                photo: $("#photo").val().trim(),
-                scores: [
-                    parseInt($("#q1").val()),
-                    parseInt($("#q2").val()),
-                    parseInt($("#q3").val()),
-                    parseInt($("#q4").val()),
-                    parseInt($("#q5").val()),
-                    parseInt($("#q6").val()),
-                    parseInt($("#q7").val()),
-                    parseInt($("#q8").val()),
-                ]
-            };
+                // Here we grab the form elements
+                var newFriend = {
+                    name: $('#name').val().trim(),
+                    photo: $("#photo").val().trim(),
+                    scores: [
+                        parseInt($("#q1").val()),
+                        parseInt($("#q2").val()),
+                        parseInt($("#q3").val()),
+                        parseInt($("#q4").val()),
+                        parseInt($("#q5").val()),
+                        parseInt($("#q6").val()),
+                        parseInt($("#q7").val()),
+                        parseInt($("#q8").val()),
+                    ]
+                };
 
-            console.log(newFriend);
+                let bestFriend = ()=>{
+                    let minimum = 0
+                    
+                    
+                }
 
-
-            $.post("/api/friends", newFriend, (data)=>{
-                console.log('friend added')
-                // // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-                // $("#match-name").text(data.name);
-                // $("#match-img").attr("src", data.photo);
-      
-                // // Show the modal with the best match
-                // $("#results-modal").modal("toggle");
-            });
-
+                
+                let answered = (object) => {
+                    console.log(object.scores)
+                    if (object.name === '' || object.photo === '') {
+                        return false
+                    }
+                    for (var x = 0; x < object.scores.length; x++) {
+                        if (isNaN(object.scores[x])) {
+                            return false    
+                        }
+                    }
+                    return true
+                };
+                if (answered(newFriend)) {
+                $.post("/api/friends", newFriend, (data) => {
+                });
+                } else alert('please input all fields')
         });
     </script>
 
