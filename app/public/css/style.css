@@ -4,6 +4,9 @@ a:focus,
 a:hover {
   color: #fff;
 }
+img {
+  width: 100%
+}
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
